@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import Header from './ch_01/Header';
+import Header from './ch_02/Header';
+import Clock from './ch_02/Clock';
 
-import Library from './ch_01/Library';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <Library></Library>
-);
+setInterval(()=>{
+  root.render(
+    <>
+      <Clock location="부산시"></Clock>
+      <Clock location="서울시"></Clock>
+    </>
+  );
+}, 1000)
+
