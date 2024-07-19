@@ -8,8 +8,12 @@ function InputText() {
         setText(e.target.value);
     };
     const handleOnClick = () => {
-        textRef.current.value = "";
-    }
+        if (text.length < 5) {
+            textRef.current.focus();
+        }else{
+            setText("");
+        }
+    };
 
     return (
         <div>
