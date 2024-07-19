@@ -1,16 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Header from './ch_02/Header';
-import Clock from './ch_02/Clock';
+import Counter2 from './ch_03/Counter2.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-setInterval(()=>{
-  root.render(
-    <>
-      <Clock location="부산시"></Clock>
-      <Clock location="서울시"></Clock>
-    </>
-  );
-}, 1000)
-
+root.render(
+  <Counter2></Counter2>
+);
