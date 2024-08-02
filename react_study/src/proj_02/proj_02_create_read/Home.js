@@ -1,4 +1,4 @@
-import React, {useState,useRef} from "react";
+import React, {useState,useRef,useEffect} from "react";
 import "./App.css";
 import Header from "./Header";
 import TodoEditor from "./TodoEditor";
@@ -25,7 +25,21 @@ import TodoList from "./TodoList";
 //     },
 // ]
 
-function App() {
+function Home() {
+    useEffect(()=>{
+        const rawData = localStorage.getItem('todo');
+        if (!rawData) {
+            return;
+        }
+        const localData = JSON.parse(rawData);
+        if (localData.length === 0) {
+            return;
+        }
+        localData.sort((a,b) => Number(b.id)-Number(a.id));
+        idRef.current = localData[0].id + 1;
+        setTodo(localData);
+    },[])
+    
     const [todo, setTodo] = useState([]);
     const idRef = useRef(0);
 
@@ -36,18 +50,24 @@ function App() {
             content,
             createDate: new Date().getTime(),
         };
-        setTodo([newItem, ...todo])
+        const newTodo = [newItem, ...todo]
+        setTodo(newTodo);
+        localStorage.setItem('todo', JSON.stringify(newTodo))
         idRef.current += 1;
     };
 
     function onUpdate(targetId) {
-        setTodo(todo.map((item) =>
-            item.id === targetId ? {...item, isDone: !item.isDone} : item)
+        const newTodo = todo.map((item) =>
+            item.id === targetId ? {...item, isDone: !item.isDone} : item
         )
+        setTodo(newTodo)
+        localStorage.setItem('todo', JSON.stringify(newTodo))
     };
 
     function onDelete(targetId) {
-        setTodo(todo.filter((item)=>item.id !== targetId))
+        const newTodo = todo.filter((item)=>item.id !== targetId)
+        setTodo(newTodo)
+        localStorage.setItem('todo', JSON.stringify(newTodo))
     };
     
     return (
@@ -59,4 +79,4 @@ function App() {
     );
 };
 
-export default App;
+export default Home;
