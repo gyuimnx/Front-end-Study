@@ -1,0 +1,16 @@
+button {
+    cursor: pointer;
+    width: 300px;
+    border: none;
+    background-color: burlywood;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.btn1 {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 5px;
+}

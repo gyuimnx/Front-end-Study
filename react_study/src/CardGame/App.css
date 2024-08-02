@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    padding-top: 20px;
+}
+
+.App {
+    max-width: 1500px;
+    max-height: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}

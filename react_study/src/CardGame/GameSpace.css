@@ -1,0 +1,9 @@
+.GameSpace {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    max-height: 350px;
+    height: 350px;
+}
