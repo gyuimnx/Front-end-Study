@@ -1,7 +1,7 @@
 import React from "react";
 import './OpponentCard.css';
 
-function OpponentCard({ opponentCards = [] }) {
+function OpponentCard({ opponentCards = [], isRevealed }) {
     const OpponentCardBorderStyle1 = opponentCards[0] ? '2px solid black' : '2px dashed gray';
     const OpponentCardBorderStyle2 = opponentCards[1] ? '2px solid black' : '2px dashed gray';
 
@@ -11,10 +11,10 @@ function OpponentCard({ opponentCards = [] }) {
     return (
         <div className="OpponentCards">
             <div className="OpponentCard1" style={{ border: OpponentCardBorderStyle1, backgroundColor: OpponentCardColorStyle1 }}>
-                {opponentCards[0] ? opponentCards[0].content : '카드1'}
+                {isRevealed && opponentCards[0] ? opponentCards[0].content : '카드1'}
             </div>
             <div className="OpponentCard2" style={{ border: OpponentCardBorderStyle2, backgroundColor: OpponentCardColorStyle2 }}>
-                {opponentCards[1] ? opponentCards[1].content : '카드2'}
+                {isRevealed && opponentCards[1] ? opponentCards[1].content : '카드2'}
             </div>
         </div>
     );

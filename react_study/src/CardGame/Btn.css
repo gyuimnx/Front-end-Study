@@ -6,6 +6,7 @@ button {
     color: white;
     border-radius: 5px;
     font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .btn1 {
@@ -13,4 +14,14 @@ button {
     justify-content: center;
     display: flex;
     gap: 5px;
+}
+
+button:hover {
+    background-color: rgb(200, 143, 69);
+    box-shadow: 0px 3px 10px 5px gray;
+}
+
+button:active {
+    background-color: rgb(140, 97, 41);
+    box-shadow: 0px 3px 10px 5px gray;
 }

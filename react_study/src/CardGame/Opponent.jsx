@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import OpponentCard from "./OpponentCard";
 import './Opponent.css';
 
-function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard }) {
+function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isRevealed, setOpponentDiscarded, resetOpponentCards, onOpponentCardsUpdate}) {
     const [opponentCards, setOpponentCards] = useState([]);
     const [OpponentCardSize1, setOpponentCardSize1] = useState("");
     const [OpponentCardSize2, setOpponentCardSize2] = useState("");
@@ -24,6 +24,9 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard }) {
 
             // 상태 업데이트
             setOpponentCards(selectedOpponentCards);
+            if (onOpponentCardsUpdate) {
+                onOpponentCardsUpdate(selectedOpponentCards); // 상태 업데이트 콜백 호출
+            }
         }
     }, [cards, selectedPlayerCards]);
 
@@ -105,9 +108,18 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard }) {
         }
     }, [onOpponentDiscard]);
 
+    useEffect(() => {
+        if (resetOpponentCards) {
+            setOpponentCards([]);
+            if (onOpponentCardsUpdate) {
+                onOpponentCardsUpdate([]); // 상태 초기화 콜백 호출
+            }
+        }
+    }, [resetOpponentCards]);
+
     return (
         <div className="Opponent">
-            <OpponentCard opponentCards={opponentCards} />
+            <OpponentCard opponentCards={opponentCards} isRevealed={isRevealed}/>
             <div className="OpponentCardSizes">
                 {OpponentCardSize1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{OpponentCardSize2}
             </div>
