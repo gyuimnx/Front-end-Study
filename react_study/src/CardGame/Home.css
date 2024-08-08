@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-content: center;
     display: flex;
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 .App {
@@ -60,4 +60,20 @@ body {
 .card.is-discarded {
     filter: grayscale(100%); /* 흑백으로 처리 */
     opacity: 0.5; /* 투명도 조정 */
+}
+
+.countdown {
+    font-size: 80px;
+    color: white;
+    margin-bottom: 20px;
+    position: absolute;
+    bottom: 250px;
+    font-weight: bold;
+}
+
+.round {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
+    /* position: absolute; */
 }

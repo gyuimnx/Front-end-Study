@@ -1,12 +1,12 @@
 .CardItem {
     width: 105px;
-    height: 150px;
+    height: 145px;
     border: 1px solid black;
     border-radius: 10px;
 
     border: 1.5px solid black;
     width: 105px;
-    height: 150px;
+    height: 145px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@
 
 .CardItem:hover {
     width: 105px;
-    height: 150px;
+    height: 145px;
     border: 1px solid black;
     border-radius: 10px;
     opacity: 0.8;
@@ -28,7 +28,7 @@
 
 .CardItem:active {
     width: 105px;
-    height: 150px;
+    height: 145px;
     border: 1px solid black;
     border-radius: 10px;
     opacity: 0.5;

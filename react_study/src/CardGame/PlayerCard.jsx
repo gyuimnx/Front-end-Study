@@ -2,8 +2,9 @@ import React from "react";
 import './PlayerCard.css';
 
 function PlayerCard({ selectedCards = [], onClickCard, highlightedCardIndex }) {
-    const card1BorderStyle = highlightedCardIndex === 0 ? '3px solid red' : '2px solid black';
-    const card2BorderStyle = highlightedCardIndex === 1 ? '3px solid red' : '2px solid black';
+    const card1BorderStyle = (selectedCards.length >= 1) ? (highlightedCardIndex === 0 ? '3px solid red' : '2px solid black') : '2px dashed gray';
+    const card2BorderStyle = (selectedCards.length >= 1) ? (highlightedCardIndex === 1 ? '3px solid red' : '2px solid black') : '2px dashed gray';
+
 
     const card1ColorStyle = selectedCards[0] ? '#9999FF' : '#f0f0f0';
     const card2ColorStyle = selectedCards[1] ? '#9999FF' : '#f0f0f0';

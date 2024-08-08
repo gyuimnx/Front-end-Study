@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 import './GameSpace.css';
 
-function GameSpace({cards, onSelected}) {
+function GameSpace({cards, onSelected, opponentSelectedCardIds }) {
     return (
         <div className="GameSpace">
             {cards.map((card) => (
@@ -10,7 +10,7 @@ function GameSpace({cards, onSelected}) {
                     key={card.id}
                     id={card.id}
                     content={card.content}
-                    isDone={card.isDone}
+                    isDone={card.isDone || opponentSelectedCardIds.includes(card.id)}
                     onSelected={onSelected}
                 />
             ))}

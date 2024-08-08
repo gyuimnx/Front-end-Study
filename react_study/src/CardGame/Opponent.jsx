@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import OpponentCard from "./OpponentCard";
 import './Opponent.css';
 
-function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isRevealed, setOpponentDiscarded, resetOpponentCards, onOpponentCardsUpdate}) {
+function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isRevealed, setOpponentDiscarded, resetOpponentCards, onOpponentCardsUpdate, round, resetTrigger }) {
     const [opponentCards, setOpponentCards] = useState([]);
     const [OpponentCardSize1, setOpponentCardSize1] = useState("");
     const [OpponentCardSize2, setOpponentCardSize2] = useState("");
@@ -27,8 +27,12 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
             if (onOpponentCardsUpdate) {
                 onOpponentCardsUpdate(selectedOpponentCards); // 상태 업데이트 콜백 호출
             }
+            
+            if (onOpponentCardsUpdate) {
+                onOpponentCardsUpdate(selectedOpponentCards); 
+            }
         }
-    }, [cards, selectedPlayerCards]);
+    }, [cards, selectedPlayerCards, round]);
 
     //상대방 카드 크기 표시
     useEffect(() => {
@@ -56,7 +60,7 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
     }, [opponentCards]);
 
     //상대방이 버릴 카드 자동 선택
-    function discardOpponentCard() {
+    const discardOpponentCard = useCallback(()=> {
         if (opponentCards.length !== 2) return;
 
         const [card1, card2] = opponentCards;
@@ -97,25 +101,32 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
         }
 
         setOpponentCards([cardToKeep]);
-    };
+    }, [opponentCards]);
 
     useEffect(() => {
-        if (onOpponentDiscard) {
+        if (onOpponentDiscard && opponentCards.length === 2) {
             const timer = setTimeout(() => {
                 discardOpponentCard();
             }, 500);
             return () => clearTimeout(timer);
         }
-    }, [onOpponentDiscard]);
+    }, [onOpponentDiscard, opponentCards, discardOpponentCard]);
+
+    // useEffect(() => {
+    //     if (resetOpponentCards) {
+    //         setOpponentCards([]);
+    //         if (onOpponentCardsUpdate) {
+    //             onOpponentCardsUpdate([]); // 상태 초기화 콜백 호출
+    //         }
+    //     }
+    // }, [resetOpponentCards]);
 
     useEffect(() => {
-        if (resetOpponentCards) {
-            setOpponentCards([]);
-            if (onOpponentCardsUpdate) {
-                onOpponentCardsUpdate([]); // 상태 초기화 콜백 호출
-            }
+        setOpponentCards([]);
+        if (onOpponentCardsUpdate) {
+            onOpponentCardsUpdate([]);
         }
-    }, [resetOpponentCards]);
+    }, [resetTrigger, resetOpponentCards]);
 
     return (
         <div className="Opponent">

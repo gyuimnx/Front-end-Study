@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PlayerCard from "./PlayerCard";
 import './Player.css';
 
-function Player({ selectedCards, onClickCard }) {
+function Player({ selectedCards, onClickCard, round }) {
     const [PlayerCardSize1, setPlayerCardSize1] = useState("");
     const [PlayerCardSize2, setPlayerCardSize2] = useState("");
     const [highlightedCardIndex, setHighlightedCardIndex] = useState(null);  // 클릭된 카드 인덱스 상태
@@ -26,7 +26,12 @@ function Player({ selectedCards, onClickCard }) {
     function handleCardClick(index) {
         setHighlightedCardIndex(index);  // 카드 클릭 시 해당 카드 인덱스를 저장
         onClickCard(index);  // 부모 컴포넌트에 클릭된 카드 인덱스 전달
-    }
+    };
+
+    //라운드 바뀔 때마다 하이라이트 제거
+    useEffect(() => {
+        setHighlightedCardIndex(null);
+    },[round])
 
     return (
         <div className="Player">

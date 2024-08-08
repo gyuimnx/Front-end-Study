@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './App.css';
+import './Home.css';
 import GameSpace from './GameSpace';
 import Opponent from './Opponent';
 import Player from './Player';
@@ -35,7 +35,7 @@ function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-function App() {
+function Home() {
     const [cards, setCards] = useState(shuffleArray([...initialCards])); //Card 배치(랜덤)
     const [selectedCards, setSelectedCards] = useState([]); //Player가 선택한 카드 정보
     const [selectedCardIndexToDiscard, setSelectedCardIndexToDiscard] = useState(null);  // 플레이어가 버린 카드의 인덱스
@@ -45,11 +45,17 @@ function App() {
     const [winner, setWinner] = useState(null); //승패 결정
     const [opponentCards, setOpponentCards] = useState([]);
     const [resetOpponentCards, setResetOpponentCards] = useState(false); // 새로운 상태 추가
+    const [count, setCount] = useState(3);
+    const [opponentSelectedCardIds, setOpponentSelectedCardIds] = useState([]);
+    const [round, setRound] = useState(1);
+    const [allSelectedCardIds, setAllSelectedCardIds] = useState([]);
+    const [resetTrigger, setResetTrigger] = useState(0);
 
     function onSelected(targetId) {
         const selectedCard = cards.find(card => card.id === targetId);
-        if (selectedCards.length < 2 && !selectedCard.isDone) {
+        if (selectedCards.length < 2 && !selectedCard.isDone  && !opponentSelectedCardIds.includes(targetId) && selectedCardIndexToDiscard === null) {
             setSelectedCards(prevSelectedCards => [...prevSelectedCards, selectedCard]);
+            setAllSelectedCardIds(prevIds => [...prevIds, targetId]);
             setCards(prevCards => 
                 prevCards.map(card => 
                     card.id === targetId ? {...card, isDone: true} : card
@@ -141,6 +147,23 @@ function App() {
         console.log("승리자:", winner);
     };
 
+    function resetGame() {
+        setSelectedCards([]);
+        setPlayerDiscardedCard(false);
+        setOpponentDiscarded(false);
+        setIsOpponentCardRevealed(false);
+        setResetTrigger(prev => prev + 1);
+        setWinner(null);
+        setResetOpponentCards(prev => !prev);
+        setOpponentSelectedCardIds([]);
+        setCards(prevCards => prevCards.map(card => ({
+            ...card,
+            isDone: allSelectedCardIds.includes(card.id)
+        })));
+        setRound(prevRound => prevRound + 1);
+        setOpponentCards([]);
+    }
+
     function handleDie() {
         setSelectedCards([]);
         setPlayerDiscardedCard(false);
@@ -152,22 +175,39 @@ function App() {
 
     function updateOpponentCards(cards) {
         setOpponentCards(cards);
+        const newOpponentCardIds = cards.map(card => card.id);
+        setOpponentSelectedCardIds(prevIds => [...prevIds, ...newOpponentCardIds]);
+        setAllSelectedCardIds(prevIds => [...prevIds, ...newOpponentCardIds]);
     }
 
     useEffect(() => {
         if (winner) {
+            const countdownTimer = setInterval(() => {
+                setCount((prevCount) => {
+                    if (prevCount > 0) return prevCount -1;
+                    clearInterval(countdownTimer);
+                    return 0;
+                });
+            }, 1000);
+
             const timer = setTimeout(() => {
-                setWinner(null);
-            }, 5000); // 3초 후 메시지 제거
-            return () => clearTimeout(timer);
+                resetGame();
+                setCount(3);
+            }, 3000); // 3초 후 메시지 제거
+            return () => {
+                clearInterval(countdownTimer);
+                clearTimeout(timer);
+            };
         }
     }, [winner]);
 
     return (
         <div className="App">
             {winner && <div className="overlay">
+                <div className="countdown">{count > 0 ? count : ''}</div>
                 <div className="result">{winner} 승!</div>
             </div>}
+            <div className="round">{round} Round</div>
             <Opponent 
                 cards={cards} 
                 selectedPlayerCards={selectedCards}
@@ -177,12 +217,15 @@ function App() {
                 setOpponentDiscarded={setOpponentDiscarded}
                 resetOpponentCards={resetOpponentCards}
                 onOpponentCardsUpdate={updateOpponentCards}
+                setOpponentCards={setOpponentCards}
+                round={round}
+                resetTrigger={resetTrigger}
             />
-            <GameSpace cards={cards} onSelected={onSelected} />
-            <Player selectedCards={selectedCards} onClickCard={handleCardClick} highlightedCardindex={selectedCardIndexToDiscard}/>
-            <Btn onDiscard={handleDiscardCard} onRevealResult={handleRevealResult} onDie={handleDie}/>
+            <GameSpace cards={cards} onSelected={onSelected} opponentSelectedCardIds={opponentSelectedCardIds} />
+            <Player selectedCards={selectedCards} onClickCard={handleCardClick} highlightedCardindex={selectedCardIndexToDiscard} round={round}/>
+            <Btn onDiscard={handleDiscardCard} onRevealResult={handleRevealResult} onDie={handleDie} round={round}/>
         </div>
     );
 }
 
-export default App;
+export default Home;
