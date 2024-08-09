@@ -51,12 +51,24 @@ body, html {
 
 .pageTitle {
     font-size: 60px;
+    display: inline-block;
+    animation: bounce 3s infinite;
 }
 
-.startPoint {
-    display: flex;
-    font-size: 30px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* App.css 또는 별도의 CSS 파일에 추가 */
+/* .bounce {
+    display: inline-block;
+    animation: bounce 1s infinite;
+} */
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
 }

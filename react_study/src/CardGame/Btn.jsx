@@ -18,22 +18,22 @@ function Btn({ onDiscard, onRevealResult, onDie, round }) {
     const handleRevealResult = () => {
         setDisabled(true); // 다른 버튼들 비활성화
         onRevealResult(); // 기존 결과 보기 실행
-        setButtonText("다음"); //버튼 텍스트 다음으로 바꾸기
+        setButtonText("Next"); //버튼 텍스트 다음으로 바꾸기
     };
 
     //라운드 바뀔 때마다 버튼 원래대로
     useEffect(() => {
         setDisabled(false);
-        setButtonText("결과보기");
+        setButtonText("Check the result");
     },[round])
 
     return (
         <div className="btn1">
             <button onClick={handleRevealResult}>{buttonText}</button>
-            <button onClick={onDie} disabled={disabled}>다이</button>
-            <button onClick={onDiscard} disabled={disabled}>버리기</button>
-            <button onClick={reload}>게임 초기화</button>
-            <button onClick={goToHome}>홈</button>
+            <button onClick={onDie} disabled={disabled}>Die</button>
+            <button onClick={onDiscard} disabled={disabled}>Discard</button>
+            <button onClick={reload}>Reset Game</button>
+            <button onClick={goToHome}>Home</button>
         </div>
     );
 }

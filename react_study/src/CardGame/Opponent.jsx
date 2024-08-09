@@ -132,7 +132,8 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
         <div className="Opponent">
             <OpponentCard opponentCards={opponentCards} isRevealed={isRevealed}/>
             <div className="OpponentCardSizes">
-                {OpponentCardSize1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{OpponentCardSize2}
+                <div>{OpponentCardSize1}</div>
+                <div>{OpponentCardSize2}</div>
             </div>
         </div>
     );

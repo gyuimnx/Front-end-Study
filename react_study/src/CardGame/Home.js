@@ -4,6 +4,7 @@ import GameSpace from './GameSpace';
 import Opponent from './Opponent';
 import Player from './Player';
 import Btn from './Btn';
+import WinOrLose from './WinOrLose';
 
 
 const initialCards = [
@@ -50,6 +51,9 @@ function Home() {
     const [round, setRound] = useState(1);
     const [allSelectedCardIds, setAllSelectedCardIds] = useState([]);
     const [resetTrigger, setResetTrigger] = useState(0);
+    const [playerWins, setPlayerWins] = useState(0); // 플레이어 승리 카운트
+    const [opponentWins, setOpponentWins] = useState(0); // 상대방 승리 카운트
+    
 
     function onSelected(targetId) {
         const selectedCard = cards.find(card => card.id === targetId);
@@ -126,22 +130,40 @@ function Home() {
     
         if (playerValue === 1 && opponentValue === 20 && !opponentPickCard.content.includes('★')) {
             setWinner('Player');
+            setPlayerWins(prevWins => prevWins + 1); // 플레이어 승리 카운트 증가
+
         } else if (playerValue === 1 && opponentValue === 20 && opponentPickCard.content.includes('★')) {
             setWinner('Opponent');
+            setOpponentWins(prevWins => prevWins + 1); // 상대방 승리 카운트 증가
+            
         } else if (playerValue === 1 && playerPickCard.content.includes('★') && opponentValue === 20) {
             setWinner('Player');
+            setPlayerWins(prevWins => prevWins + 1);
+
         } else if (playerValue === 1 && playerPickCard.content.includes('★') && opponentValue === 20 && opponentPickCard.content.includes('★')) {
             setWinner('Player');
+            setPlayerWins(prevWins => prevWins + 1);
+
         } else if (playerValue === 1 && playerPickCard.content.includes('★') && opponentValue === 1) {
             setWinner('Player');
+            setPlayerWins(prevWins => prevWins + 1);
+
         } else if (playerValue === 20 && !playerPickCard.content.includes('★') && opponentValue === 1 && opponentPickCard.content.includes('★')) {
             setWinner('Opponent');
+            setOpponentWins(prevWins => prevWins + 1);
+
         } else if (playerValue === 20 && playerPickCard.content.includes('★') && opponentValue === 20 && !opponentPickCard.content.includes('★')) {
             setWinner('Player');
+            setPlayerWins(prevWins => prevWins + 1);
+
         } else if (playerValue > opponentValue) {
             setWinner('Player');
+            setPlayerWins(prevWins => prevWins + 1);
+
         } else {
             setWinner('Opponent');
+            setOpponentWins(prevWins => prevWins + 1);
+
         }
     
         console.log("승리자:", winner);
@@ -223,6 +245,7 @@ function Home() {
             />
             <GameSpace cards={cards} onSelected={onSelected} opponentSelectedCardIds={opponentSelectedCardIds} />
             <Player selectedCards={selectedCards} onClickCard={handleCardClick} highlightedCardindex={selectedCardIndexToDiscard} round={round}/>
+            <WinOrLose playerWins={playerWins} opponentWins={opponentWins} />
             <Btn onDiscard={handleDiscardCard} onRevealResult={handleRevealResult} onDie={handleDie} round={round}/>
         </div>
     );

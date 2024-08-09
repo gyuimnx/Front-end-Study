@@ -35,13 +35,16 @@ function Player({ selectedCards, onClickCard, round }) {
 
     return (
         <div className="Player">
-            <PlayerCard 
-                selectedCards={selectedCards} 
-                onClickCard={handleCardClick} 
-                highlightedCardIndex={highlightedCardIndex}  // 하이라이트 인덱스를 전달
-            />
-            <div className="PlayerCardSizes">
-                {PlayerCardSize1}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PlayerCardSize2}
+            <div className="PlayerCardSpace">
+                <PlayerCard 
+                    selectedCards={selectedCards} 
+                    onClickCard={handleCardClick} 
+                    highlightedCardIndex={highlightedCardIndex}  // 하이라이트 인덱스를 전달
+                />
+                <div className="PlayerCardSizes">
+                    <div>{PlayerCardSize1}</div>
+                    <div>{PlayerCardSize2}</div>
+                </div>
             </div>
         </div>
     );

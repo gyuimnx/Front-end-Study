@@ -1,4 +1,17 @@
 .Player {
+    position: relative;
+}
+
+.PlayerCardSizes {
+    font-size: 24px;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개의 열을 동일한 크기로 설정 */
+    grid-template-rows: auto; /* 자동 높이 설정 (요소에 따라 조정됨) */
+    gap: 90px; /* 요소 사이의 고정 간격 설정 */
+}
+
+.PlayerCardSpace {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +21,6 @@
     background-color: rgb(217, 218, 213);
 }
 
-.PlayerCardSizes {
-    font-size: 24px;
-    font-weight: bold;
+.PlayerCardSizes div {
+    text-align: center; /* 텍스트 중앙 정렬 */
 }

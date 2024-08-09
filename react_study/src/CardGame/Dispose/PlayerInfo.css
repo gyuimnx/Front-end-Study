@@ -1,0 +1,18 @@
+.PlayerInfo {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.betBtn{
+    width: 80px;
+    height: 30px;
+}
+
+.MyPoint {
+    color: black; /* 텍스트 색상 확인 */
+    font-size: 16px; /* 글꼴 크기 확인 */
+}
