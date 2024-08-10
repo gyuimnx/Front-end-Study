@@ -2,9 +2,10 @@
     display: flex;
     gap: 10px;
     justify-content: center;
+    position: relative;
 }
 
-.PlayerCard1, .PlayerCard2{
+.PlayerCard1, .PlayerCard2, .PlayerDiscardCard{
     border: 3px dotted black;
     width: 105px;
     height: 145px;
@@ -31,4 +32,9 @@
     border-radius: 10px;
     opacity: 0.5;
     box-shadow: 0px 5px 10px 5px gray;
+}
+
+.PlayerDiscardCard {
+    position: absolute;
+    left: -150%;
 }

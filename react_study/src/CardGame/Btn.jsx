@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Btn({ onDiscard, onRevealResult, onDie, round }) {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
-    const [buttonText, setButtonText] = useState("결과보기");
+    const [buttonText, setButtonText] = useState("Check the result");
 
     function reload() {
         window.location.replace('/home')

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PlayerCard from "./PlayerCard";
 import './Player.css';
 
-function Player({ selectedCards, onClickCard, round }) {
+function Player({ selectedCards, onClickCard, round, discardedPlayerCard }) {
     const [PlayerCardSize1, setPlayerCardSize1] = useState("");
     const [PlayerCardSize2, setPlayerCardSize2] = useState("");
     const [highlightedCardIndex, setHighlightedCardIndex] = useState(null);  // 클릭된 카드 인덱스 상태
@@ -40,6 +40,7 @@ function Player({ selectedCards, onClickCard, round }) {
                     selectedCards={selectedCards} 
                     onClickCard={handleCardClick} 
                     highlightedCardIndex={highlightedCardIndex}  // 하이라이트 인덱스를 전달
+                    discardedPlayerCard={discardedPlayerCard}
                 />
                 <div className="PlayerCardSizes">
                     <div>{PlayerCardSize1}</div>

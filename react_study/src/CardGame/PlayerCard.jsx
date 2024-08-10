@@ -1,18 +1,23 @@
 import React from "react";
 import './PlayerCard.css';
 
-function PlayerCard({ selectedCards = [], onClickCard, highlightedCardIndex }) {
+function PlayerCard({ selectedCards = [], onClickCard, highlightedCardIndex, discardedPlayerCard }) {
     const card1BorderStyle = (selectedCards.length >= 1) ? (highlightedCardIndex === 0 ? '2px solid black' : '2px solid black') : '2px dashed gray';
     const card2BorderStyle = (selectedCards.length >= 1) ? (highlightedCardIndex === 1 ? '2px solid black' : '2px solid black') : '2px dashed gray';
+    const DiscardBorderStyle = (selectedCards.length === 1 && discardedPlayerCard) ? '2px solid black' : '2px dashed gray';
 
     const card1ColorStyle = selectedCards[0] ? '#9999FF' : '#f0f0f0';
     const card2ColorStyle = selectedCards[1] ? '#9999FF' : '#f0f0f0';
+    const DiscardColorStyle = (selectedCards.length === 1 && discardedPlayerCard) ? '#797979' : '#f0f0f0';
 
     const card1ShadowStyle = highlightedCardIndex === 0 ? '3px 7px 10px black' : 'none';
     const card2ShadowStyle = highlightedCardIndex === 1 ? '3px 7px 10px black' : 'none';
 
     return (
         <div className="PlayerCards">
+            <div className="PlayerDiscardCard" style={{border: DiscardBorderStyle, backgroundColor: DiscardColorStyle}}>
+                {(selectedCards.length === 1 && discardedPlayerCard) ? discardedPlayerCard.content : 'DiscardCard'}
+            </div>
             <div
                 className="PlayerCard1"
                 style={{ border: card1BorderStyle, backgroundColor: card1ColorStyle, boxShadow: card1ShadowStyle }}

@@ -8,17 +8,17 @@ import WinOrLose from './WinOrLose';
 
 
 const initialCards = [
-    {id: 0, isDone: false, content: "1"},
-    {id: 1, isDone: false, content: "2"},
-    {id: 2, isDone: false, content: "3"},
-    {id: 3, isDone: false, content: "4"},
-    {id: 4, isDone: false, content: "5"},
-    {id: 5, isDone: false, content: "6"},
-    {id: 6, isDone: false, content: "7"},
-    {id: 7, isDone: false, content: "8"},
-    {id: 8, isDone: false, content: "9"},
-    {id: 9, isDone: false, content: "10"},
-    {id: 10, isDone: false, content: "1★"},
+    {id: 0, isDone: false, content: "1★"},
+    {id: 1, isDone: false, content: "1"},
+    {id: 2, isDone: false, content: "2"},
+    {id: 3, isDone: false, content: "3"},
+    {id: 4, isDone: false, content: "4"},
+    {id: 5, isDone: false, content: "5"},
+    {id: 6, isDone: false, content: "6"},
+    {id: 7, isDone: false, content: "7"},
+    {id: 8, isDone: false, content: "8"},
+    {id: 9, isDone: false, content: "9"},
+    {id: 10, isDone: false, content: "10"},
     {id: 11, isDone: false, content: "11"},
     {id: 12, isDone: false, content: "12"},
     {id: 13, isDone: false, content: "13"},
@@ -53,7 +53,8 @@ function Home() {
     const [resetTrigger, setResetTrigger] = useState(0);
     const [playerWins, setPlayerWins] = useState(0); // 플레이어 승리 카운트
     const [opponentWins, setOpponentWins] = useState(0); // 상대방 승리 카운트
-    
+    const [gameOver, setGameOver] = useState(false); // 게임 종료 상태
+    const [discardedPlayerCard,setDiscardedPlayerCard] = useState(null);
 
     function onSelected(targetId) {
         const selectedCard = cards.find(card => card.id === targetId);
@@ -74,15 +75,21 @@ function Home() {
 
     function handleDiscardCard() {
         if (selectedCardIndexToDiscard !== null) {
+            const discardedCard = selectedCards[selectedCardIndexToDiscard];
             setSelectedCards(prevCards => prevCards.filter((_, index) => index !== selectedCardIndexToDiscard));
             setSelectedCardIndexToDiscard(null);
             setPlayerDiscardedCard(true);
+
+                    // 버려진 카드 저장
+            setDiscardedPlayerCard(discardedCard);
     
             // 플레이어가 카드를 버렸다고 표시
             setTimeout(() => setPlayerDiscardedCard(false), 300000);
         }
-    }
-    
+    };
+
+    console.log("Player가 버린 카드: ", discardedPlayerCard);
+
     function handleRevealResult() {
         if (playerDiscardedCard) {
             // 카드가 버려졌고, 상대 카드가 공개되어 있는지 확인
@@ -129,44 +136,44 @@ function Home() {
         console.log("상대 카드 값:", opponentValue);
     
         if (playerValue === 1 && opponentValue === 20 && !opponentPickCard.content.includes('★')) {
-            setWinner('Player');
+            setWinner('Win!');
             setPlayerWins(prevWins => prevWins + 1); // 플레이어 승리 카운트 증가
 
         } else if (playerValue === 1 && opponentValue === 20 && opponentPickCard.content.includes('★')) {
-            setWinner('Opponent');
+            setWinner('Lose');
             setOpponentWins(prevWins => prevWins + 1); // 상대방 승리 카운트 증가
             
         } else if (playerValue === 1 && playerPickCard.content.includes('★') && opponentValue === 20) {
-            setWinner('Player');
+            setWinner('Win!');
             setPlayerWins(prevWins => prevWins + 1);
 
         } else if (playerValue === 1 && playerPickCard.content.includes('★') && opponentValue === 20 && opponentPickCard.content.includes('★')) {
-            setWinner('Player');
+            setWinner('Win!');
             setPlayerWins(prevWins => prevWins + 1);
 
         } else if (playerValue === 1 && playerPickCard.content.includes('★') && opponentValue === 1) {
-            setWinner('Player');
+            setWinner('Win!');
             setPlayerWins(prevWins => prevWins + 1);
 
         } else if (playerValue === 20 && !playerPickCard.content.includes('★') && opponentValue === 1 && opponentPickCard.content.includes('★')) {
-            setWinner('Opponent');
+            setWinner('Lose');
             setOpponentWins(prevWins => prevWins + 1);
 
         } else if (playerValue === 20 && playerPickCard.content.includes('★') && opponentValue === 20 && !opponentPickCard.content.includes('★')) {
-            setWinner('Player');
+            setWinner('Win!');
             setPlayerWins(prevWins => prevWins + 1);
 
         } else if (playerValue > opponentValue) {
-            setWinner('Player');
+            setWinner('Win!');
             setPlayerWins(prevWins => prevWins + 1);
 
         } else {
-            setWinner('Opponent');
+            setWinner('Lose');
             setOpponentWins(prevWins => prevWins + 1);
 
         }
     
-        console.log("승리자:", winner);
+        console.log(winner);
     };
 
     function resetGame() {
@@ -223,11 +230,22 @@ function Home() {
         }
     }, [winner]);
 
+    function handleGameOver() {
+        setGameOver(true); // 게임 종료 상태 설정
+    }
+
     return (
         <div className="App">
+            {gameOver && (
+                <div className="overlay-GameOver">
+                    <h1 className="GameOverMessage">The game ends</h1>
+                    <button onClick={() => window.location.replace('/home')} className="btn">Restart Game</button>
+                    <button onClick={() => window.location.href = '/'}>Home</button>
+                </div>
+            )}
             {winner && <div className="overlay">
                 <div className="countdown">{count > 0 ? count : ''}</div>
-                <div className="result">{winner} 승!</div>
+                <div className="result">{winner}</div>
             </div>}
             <div className="round">{round} Round</div>
             <Opponent 
@@ -243,8 +261,14 @@ function Home() {
                 round={round}
                 resetTrigger={resetTrigger}
             />
-            <GameSpace cards={cards} onSelected={onSelected} opponentSelectedCardIds={opponentSelectedCardIds} />
-            <Player selectedCards={selectedCards} onClickCard={handleCardClick} highlightedCardindex={selectedCardIndexToDiscard} round={round}/>
+            <GameSpace cards={cards} onSelected={onSelected} opponentSelectedCardIds={opponentSelectedCardIds} onGameOver={handleGameOver}/>
+            <Player 
+                selectedCards={selectedCards} 
+                onClickCard={handleCardClick} 
+                highlightedCardindex={selectedCardIndexToDiscard} 
+                round={round} 
+                discardedPlayerCard={discardedPlayerCard}
+            />
             <WinOrLose playerWins={playerWins} opponentWins={opponentWins} />
             <Btn onDiscard={handleDiscardCard} onRevealResult={handleRevealResult} onDie={handleDie} round={round}/>
         </div>

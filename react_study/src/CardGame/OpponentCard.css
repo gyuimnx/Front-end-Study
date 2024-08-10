@@ -2,8 +2,10 @@
     display: flex;
     gap: 10px;
     justify-content: center;
+    position: relative;
 }
-.OpponentCard1, .OpponentCard2{
+
+.OpponentCard1, .OpponentCard2, .OpponentDiscardCard{
     border: 3px dotted black;
     width: 105px;
     height: 145px;
@@ -25,4 +27,16 @@
     opacity: 0.6;
 }
 
+.OpponentDiscardCard {
+    position: absolute;
+    left: -150%;
+}
 
+/*일단 임시*/
+.discardedCard {
+    border: 2px dashed red;
+    background-color: #f8d7da;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+}

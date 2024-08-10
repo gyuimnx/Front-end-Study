@@ -6,6 +6,7 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
     const [opponentCards, setOpponentCards] = useState([]);
     const [OpponentCardSize1, setOpponentCardSize1] = useState("");
     const [OpponentCardSize2, setOpponentCardSize2] = useState("");
+    const [cardDiscard, setCardDiscard] = useState(null);
 
     useEffect(() => {
         if (selectedPlayerCards.length === 2) {
@@ -69,39 +70,64 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
         const value2 = getValue(card2);
 
         let cardToKeep;
+        let cardDiscard;
 
         if (value1 <= 10 && value2 <= 10) {  // 하하
             if ((value1 === 1 && value2 !== 1) || (value1 === 1 && card1.content.includes('★'))) {
                 cardToKeep = card1;
+                cardDiscard = card2;
+
             } else if ((value2 === 1 && value1 !== 1) || (value2 === 1 && card2.content.includes('★'))) {
                 cardToKeep = card2;
+                cardDiscard = card1;
+
             } else if (value1 === 1 && value2 === 1) {
                 cardToKeep = card1.content.includes('★') ? card1 : card2;
+                cardDiscard = card1.content.includes('★') ? card2 : card1;
+
             } else {
                 cardToKeep = value1 < value2 ? card2 : card1;
+                cardDiscard = value1 < value2 ? card1 : card2;
             }
         } else if ((value1 <= 10 && value2 > 10) || (value1 > 10 && value2 <= 10)) {  // 하상 or 상하
             if ((value1 === 1 && value2 === 20) || (value1 === 20 && value2 === 1)) {
                 cardToKeep = value1 === 20 ? card1 : card2;
+                cardDiscard = value1 === 20 ? card2 : card1;
+
             }else if ((value1 === 1 && value2 !== 20) || (value2 === 1 && value1 !== 20)) {
                     cardToKeep = value1 === 1 ? card1 : card2;
+                    cardDiscard = value1 === 1 ? card2 : card1;
+
             } else {
                 cardToKeep = value1 > value2 ? card1 : card2;
+                cardDiscard = value1 > value2 ? card2 : card1;
             }
         } else {  // 상상
             if ((value1 === 20 && value2 !== 20) || (value1 === 20 && card1.content.includes('★'))) {
                 cardToKeep = card1;
+                cardDiscard = card2;
+
             } else if ((value2 === 20 && value1 !== 20) || (value2 === 20 && card2.content.includes('★'))) {
                 cardToKeep = card2;
+                cardDiscard = card1;
+
             } else if (value1 === 20 && value2 === 20) {
                 cardToKeep = card1.content.includes('★') ? card1 : card2;
+                cardDiscard = card1.content.includes('★') ? card2 : card1;
+
             } else {
                 cardToKeep = value1 > value2 ? card1 : card2;
+                cardDiscard = value1 > value2 ? card2 : card1;
             }
         }
 
+        setCardDiscard(cardDiscard);
         setOpponentCards([cardToKeep]);
+
+        return cardDiscard;
     }, [opponentCards]);
+
+    console.log("Opponent가 버린 카드: ",cardDiscard);
 
     useEffect(() => {
         if (onOpponentDiscard && opponentCards.length === 2) {
@@ -130,7 +156,7 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
 
     return (
         <div className="Opponent">
-            <OpponentCard opponentCards={opponentCards} isRevealed={isRevealed}/>
+            <OpponentCard opponentCards={opponentCards} isRevealed={isRevealed} cardDiscard={cardDiscard}/>
             <div className="OpponentCardSizes">
                 <div>{OpponentCardSize1}</div>
                 <div>{OpponentCardSize2}</div>
