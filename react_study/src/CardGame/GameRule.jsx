@@ -34,8 +34,10 @@ function GameRule() {
                         <li>플레이어는 카드 중 하나를 선택후 <button className="DiscardBtn">Discard</button> 버튼을 눌러 카드를 버릴 수 있다.</li>
                         <li>카드를 버리고 난 후 버린 카드의 숫자가 공개된다.</li>
                         <li>버려진 카드를 보고 게임을 계속 진행할지 카드를 다시 선택할지 고를 수 있다.</li>
-                        <li><button className="DieBtn">Die</button> 버튼을 누르면 선택했던 카드는 사라지고 카드를 다시 선택하게 된다.<br/><br/> <button className="CheckBtn">Check</button> 버튼을 누르면 서로의 카드가 공개된다.</li>
+                        <li><button className="DieBtn">Die</button> 버튼을 누르면 선택했던 카드는 사라지고 카드를 다시 선택하게 된다.</li>
+                        <li><button className="CheckBtn">Check</button> 버튼을 누르면 서로의 카드가 공개된다.</li>
                         <li>서로의 카드가 공개되고, <button className="CheckBtn">Next</button> 버튼을 누르면 승자가 결정된다.</li>
+                        <li>필드에 카드가 4장 이하로 남게되면 게임은 종료된다.</li>
                     </ul>
                 </>
             ),

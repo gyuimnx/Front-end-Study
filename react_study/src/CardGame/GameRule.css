@@ -58,7 +58,7 @@
     text-align: left;
     position: relative;
 
-    width: 50vw;
+    width: 55vw;
     height: 70vh;
 }
 
@@ -66,11 +66,11 @@
     font-size: 35px;
     margin-bottom: 20px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .Rules p {
-    font-size: 18px;
+    font-size: 19px;
     margin-bottom: 30px;
 }
 
@@ -82,12 +82,12 @@
     list-style-type: disc;
     padding-left: 50px;
     /* list-style-type: none; */
-    font-size: 18px;
+    font-size: 20px;
     font-weight: normal;
 }
 
 .Rules li {
-    margin-bottom: 30px;
+    margin-bottom: 23px;
 }
 
 .subTitle {
