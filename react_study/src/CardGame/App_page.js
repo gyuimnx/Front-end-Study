@@ -15,7 +15,7 @@ function App() {
 
     return (
         <div className="pageApp">
-            <h1 className="pageTitle">Welcom to the CardGame</h1>
+            <h1 className="pageTitle">Final Choice</h1>
             <button className="pageBtn" onClick={goToHome}>Start Game</button>
             <button className="pageBtn" onClick={goToRules}>Game Rules</button>
         </div>
@@ -23,3 +23,8 @@ function App() {
 };
 
 export default App;
+
+//<img className="topImg" src="img/커튼.png" alt="4" />
+// <img className="leftImg" src="img/카니발.png" alt="1" />
+// <img className="centerImg" src="img/카니발.png" alt="2" />
+// <img className="rightImg" src="img/카니발.png" alt="3" />

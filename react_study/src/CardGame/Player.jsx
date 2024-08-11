@@ -10,14 +10,14 @@ function Player({ selectedCards, onClickCard, round, discardedPlayerCard }) {
     useEffect(() => {
         if (selectedCards[0]) {
             const value = parseInt(selectedCards[0].content, 10);
-            setPlayerCardSize1(value < 11 ? "下" : "上");
+            setPlayerCardSize1(value < 11 ? "Low" : "High");
         } else {
             setPlayerCardSize1("");
         }
 
         if (selectedCards[1]) {
             const value = parseInt(selectedCards[1].content, 10);
-            setPlayerCardSize2(value < 11 ? "下" : "上");
+            setPlayerCardSize2(value < 11 ? "Low" : "High");
         } else {
             setPlayerCardSize2("");
         }

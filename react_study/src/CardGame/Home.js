@@ -238,7 +238,7 @@ function Home() {
         <div className="App">
             {gameOver && (
                 <div className="overlay-GameOver">
-                    <h1 className="GameOverMessage">The game ends</h1>
+                    <h1 className="GameOverMessage">GAME OVER</h1>
                     <button onClick={() => window.location.replace('/home')} className="btn">Restart Game</button>
                     <button onClick={() => window.location.href = '/'}>Home</button>
                 </div>
@@ -247,7 +247,7 @@ function Home() {
                 <div className="countdown">{count > 0 ? count : ''}</div>
                 <div className="result">{winner}</div>
             </div>}
-            <div className="round">{round} Round</div>
+            <div className="round">&nbsp;{round} Round</div>
             <Opponent 
                 cards={cards} 
                 selectedPlayerCards={selectedCards}

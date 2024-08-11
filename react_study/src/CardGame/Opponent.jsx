@@ -40,9 +40,9 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
         if (opponentCards[0]) {
             const value = parseInt(opponentCards[0].content, 10);
             if (value < 11) {
-                setOpponentCardSize1("下");
+                setOpponentCardSize1("Low");
             } else {
-                setOpponentCardSize1("上");
+                setOpponentCardSize1("High");
             }
         } else {
             setOpponentCardSize1("");
@@ -51,9 +51,9 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
         if (opponentCards[1]) {
             const value = parseInt(opponentCards[1].content, 10);
             if (value < 11) {
-                setOpponentCardSize2("下");
+                setOpponentCardSize2("Low");
             } else {
-                setOpponentCardSize2("上");
+                setOpponentCardSize2("High");
             }
         } else {
             setOpponentCardSize2("");

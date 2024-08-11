@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Lilita+One&family=Luckiest+Guy&family=Noto+Sans+KR:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.RulesContainer {
+    font-family: "Noto Sans KR", sans-serif;
+
+    align-items: center;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+    width: 60vw;
+    height: 75vh;
+
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    /* margin: 50px auto;
+    padding: 0 auto; */
+
+    background-color: #1C1C1C;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    /* margin: 50px auto; */
+    border-radius: 40px;
+
+    color: white;
+    position: relative;
+}
+
+.homeBtn {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0%;
+    margin: 0%;
+
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 3%;
+    top: 5%;
+}
+
+.homeBtn:hover {
+    background: #555555;
+}
+
+.Rules {
+    max-width: 800px;
+    text-align: left;
+    position: relative;
+
+    width: 50vw;
+    height: 70vh;
+}
+
+.Rules h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.Rules p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.explan {
+    padding-left: 30px;
+}
+
+.Rules ul {
+    list-style-type: disc;
+    padding-left: 50px;
+    /* list-style-type: none; */
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.Rules li {
+    margin-bottom: 30px;
+}
+
+.subTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.pagination {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%); /* 가운데 정렬 */
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 버튼 간격 */
+}
+
+.pagination button {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.CheckBtn {
+    background: linear-gradient(to bottom, #1a1a1a, #000000);
+    color: #ff0000; 
+    border-radius: 25px;
+    cursor: pointer;
+
+    font-weight: bold;
+    padding: 2px;
+    margin: 0%;
+}
+
+.DieBtn {
+    background: linear-gradient(to bottom, #666666, #333333);
+    color: #ffffff;
+    border-radius: 25px;
+    cursor: pointer;
+
+    font-weight: bold;
+    padding: 2px;
+    margin: 0%;
+}
+
+.DiscardBtn {
+    background: linear-gradient(to bottom, #333333, #1a1a1a);
+    color: #ffffff;
+    border-radius: 25px;
+    cursor: pointer;
+
+    font-weight: bold;
+    padding: 2px;
+    margin: 0%;
+}
+
+li button {
+    font-family: "Noto Sans KR", sans-serif;
+}

@@ -4,7 +4,13 @@
     align-items: center;
     justify-content: space-around;
     gap: 20px;
-    max-height: 350px;
-    height: 300px;
-    padding-bottom: 10px;
+    max-height: 380px;
+    height: 370px;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: #f5f5f5;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
 }

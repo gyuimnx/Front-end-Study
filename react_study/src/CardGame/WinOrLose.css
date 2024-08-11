@@ -3,8 +3,8 @@
     bottom: 15%;
     right: 25%;
     /* transform: translate(-50%, -50%); */
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    color: black;
     padding: 10px;
     border-radius: 10px;
     text-align: center;
@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    font-weight: bold;
 }
 
 .text1 {

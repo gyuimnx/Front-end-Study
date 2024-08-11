@@ -4,9 +4,6 @@
     border: 1px solid black;
     border-radius: 10px;
 
-    border: 1.5px solid black;
-    width: 105px;
-    height: 145px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -36,7 +33,7 @@
 }
 
 .CardItem.disabled {
-    opacity: 0.3;
+    opacity: 0.5;
     cursor: not-allowed;
     background-color: gray;
     box-shadow: 0px 5px 10px 5px gray;
@@ -47,15 +44,3 @@ img {
     height: 100%;
     border-radius: 9px;
 }
-
-/* .Cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    gap: 20px;
-}
-
-.Card.selected {
-    background-color: lightblue;
-} */

@@ -3,12 +3,14 @@
 }
 
 .PlayerCardSizes {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2개의 열을 동일한 크기로 설정 */
     grid-template-rows: auto; /* 자동 높이 설정 (요소에 따라 조정됨) */
-    gap: 90px; /* 요소 사이의 고정 간격 설정 */
+    gap: 75px; /* 요소 사이의 고정 간격 설정 */
+    color: black;
+    padding-top: 7px;
 }
 
 .PlayerCardSpace {
@@ -18,9 +20,14 @@
     justify-content: center;
     height: 205px;
     max-height: 205px;
-    background-color: rgb(217, 218, 213);
+    
+    background-color: #f5f5f5;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .PlayerCardSizes div {
     text-align: center; /* 텍스트 중앙 정렬 */
 }
+

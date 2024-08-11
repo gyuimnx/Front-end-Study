@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Btn({ onDiscard, onRevealResult, onDie, round }) {
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
-    const [buttonText, setButtonText] = useState("Check the result");
+    const [buttonText, setButtonText] = useState("Check");
 
     function reload() {
         window.location.replace('/home')
@@ -24,7 +24,7 @@ function Btn({ onDiscard, onRevealResult, onDie, round }) {
     //라운드 바뀔 때마다 버튼 원래대로
     useEffect(() => {
         setDisabled(false);
-        setButtonText("Check the result");
+        setButtonText("Check");
     },[round])
 
     return (
