@@ -5,8 +5,6 @@
 
     align-items: center;
     display: flex;
-    max-width: 100%;
-    max-height: 100%;
     width: 60vw;
     height: 75vh;
 
@@ -27,7 +25,6 @@
 
 .homeBtn {
     margin-bottom: 20px;
-    font-size: 16px;
     font-weight: bold;
     color: black;
     background: white;
@@ -42,8 +39,8 @@
     padding: 0%;
     margin: 0%;
 
-    width: 30px;
-    height: 30px;
+    width: 2.3em;
+    height: 2.3em;
     position: absolute;
     left: 3%;
     top: 5%;
@@ -54,7 +51,6 @@
 }
 
 .Rules {
-    max-width: 800px;
     text-align: left;
     position: relative;
 
@@ -63,14 +59,14 @@
 }
 
 .Rules h1 {
-    font-size: 35px;
+    font-size: 2.2em;
     margin-bottom: 20px;
     text-align: center;
     margin-top: 10px;
 }
 
 .Rules p {
-    font-size: 19px;
+    font-size: 1.2em;
     margin-bottom: 30px;
 }
 
@@ -80,7 +76,7 @@
 
 .Rules ul {
     list-style-type: disc;
-    padding-left: 50px;
+    padding-left: 15%;
     /* list-style-type: none; */
     font-size: 20px;
     font-weight: normal;
@@ -93,6 +89,11 @@
 .subTitle {
     font-weight: bold;
     font-size: 20px;
+    padding-left: 10%;
+}
+
+.explan {
+    padding-left: 12%;
 }
 
 .pagination {
@@ -106,8 +107,8 @@
 }
 
 .pagination button {
-    width: 30px;
-    height: 30px;
+    width: 2.3em;
+    height: 2.3em;
     background-color: white;
     border: none;
     border-radius: 5px;

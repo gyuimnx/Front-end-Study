@@ -3,8 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 205px;
-    max-height: 205px;
+    height: 22vh;
     /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
     padding: 5px;
 
@@ -14,19 +13,13 @@
 }
 
 .OpponentCardSizes {
-    font-size: 20px;
+    font-size: 1.5em;
     font-weight: bold;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2개의 열을 동일한 크기로 설정 */
     grid-template-rows: auto; /* 자동 높이 설정 (요소에 따라 조정됨) */
-    gap: 75px; /* 요소 사이의 고정 간격 설정 */
+    gap: 60px; /* 요소 사이의 고정 간격 설정 */
 
-    margin-top: 10px; /* 카드 영역과 크기 표시 영역 사이의 간격 */
+    margin-top: 5px; /* 카드 영역과 크기 표시 영역 사이의 간격 */
     color: black;
 }
-
-/* 부드러운 민트 그린 (#e0f2f1)
-상쾌한 라이트 그린 (#d0f0c0)
-부드러운 애플 그린 (#c1e1c1)
-차분한 올리브 그린 (#a3bfa8)
-강렬한 포레스트 그린 (#2e8b57) */

@@ -17,12 +17,12 @@ body, html {
 .pageBtn {
     color: #E0E0E0;
     cursor: pointer;
-    width: 600px;
-    height: 50px;
+    width: 30vw;
+    height: 5.5vh;
     border: none;
     /* background-color: burlywood; */
     border-radius: 25px;
-    font-size: 27px;
+    font-size: 1.7em;
     margin: 10px;
     font-weight: bold;
 
@@ -66,7 +66,7 @@ body, html {
 }
 
 .pageTitle {
-    font-size: 80px;
+    font-size: 5em;
     display: inline-block;
     /* animation: softGlow 3s infinite alternate; */
     color: #FFFFFF; /* 더 어두운 빨간색 */
