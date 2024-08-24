@@ -138,15 +138,6 @@ function Opponent({ cards = [], selectedPlayerCards = [], onOpponentDiscard, isR
         }
     }, [onOpponentDiscard, opponentCards, discardOpponentCard]);
 
-    // useEffect(() => {
-    //     if (resetOpponentCards) {
-    //         setOpponentCards([]);
-    //         if (onOpponentCardsUpdate) {
-    //             onOpponentCardsUpdate([]); // 상태 초기화 콜백 호출
-    //         }
-    //     }
-    // }, [resetOpponentCards]);
-
     useEffect(() => {
         setOpponentCards([]);
         if (onOpponentCardsUpdate) {
