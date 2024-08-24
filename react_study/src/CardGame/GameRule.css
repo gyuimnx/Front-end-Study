@@ -59,14 +59,14 @@
 }
 
 .Rules h1 {
-    font-size: 2.2em;
-    margin-bottom: 25px;
+    font-size: 1.8em;
+    margin-bottom: 15px;
     text-align: center;
     margin-top: 10px;
 }
 
 .Rules p {
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 20px;
 }
 
@@ -78,7 +78,7 @@
     list-style-type: disc;
     padding-left: 15%;
     /* list-style-type: none; */
-    font-size: 20px;
+    font-size: 1em;
     font-weight: normal;
 }
 
@@ -88,7 +88,7 @@
 
 .subTitle {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1em;
     padding-left: 10%;
 }
 
